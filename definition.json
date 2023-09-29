@@ -1,67 +1,37 @@
-# Sign in to your Azure account
-Connect-AzAccount
-
-# Replace with your resource group and Logic App name
-$resourceGroupName = "AzureFunctionsQuickstart-rg"
-$logicAppName = "WorkflowLogicApp"
-
-# Define the Logic App ARM template
-$logicAppTemplate = @"
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
     "contentVersion": "1.0.0.0",
-    "resources": [
-        {
-            "type": "Microsoft.Logic/workflows",
-            "apiVersion": "2017-07-01",
-            "name": "$logicAppName",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "definition": {
-                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-                    "contentVersion": "1.0.0.0",
-                    "triggers": {
-                        "manual": {
-                            "inputs": {
-                                "schema": {
-                                    "properties": {
-                                        "body": {
-                                            "type": "object"
-                                        },
-                                        "headers": {
-                                            "type": "object"
-                                        },
-                                        "host": {
-                                            "type": "string"
-                                        },
-                                        "method": {
-                                            "type": "string"
-                                        },
-                                        "path": {
-                                            "type": "string"
-                                        },
-                                        "queries": {
-                                            "type": "object"
-                                        }
-                                    }
-                                }
-                            },
-                            "type": "Request"
+    "parameters": {},
+    "triggers": {
+        "manual": {
+            "type": "Request",
+            "inputs": {
+                "schema": {
+                    "properties": {
+                        "body": {
+                            "type": "object"
+                        },
+                        "headers": {
+                            "type": "object"
+                        },
+                        "host": {
+                            "type": "string"
+                        },
+                        "method": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "string"
+                        },
+                        "queries": {
+                            "type": "object"
                         }
                     },
-                    "actions": {},
-                    "outputs": {}
-                },
-                "state": "Enabled"
+                    "type": "object"
+                }
             }
         }
-    ],
+    },
+    "actions": {},
     "outputs": {}
 }
-"@
-
-# Create the Logic App with the specified template
-New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateParameterObject @{ } -TemplateContent $logicAppTemplate
-
-# Enable the Logic App
-Set-AzLogicApp -ResourceGroupName $resourceGroupName -Name $logicAppName -State "Enabled"
