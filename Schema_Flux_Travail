@@ -1,37 +1,37 @@
-<mxfile host="app.diagrams.net" modified="2023-09-29T07:25:35.037Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0" etag="sElKLtwetyOudxn58Wu6" version="22.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-09-29T07:26:49.900Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0" etag="uRAviamFq3uJEE2EM-GP" version="22.0.0" type="github">
   <diagram name="Page-1" id="FinugbX3ogyh6_Ym3ktt">
-    <mxGraphModel dx="468" dy="664" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2298" dy="1160" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="4xLh56Lr_Jp9C70uscPO-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="4xLh56Lr_Jp9C70uscPO-1" target="4xLh56Lr_Jp9C70uscPO-3">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="350" y="245" as="targetPoint" />
+            <mxPoint x="350" y="405" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="4xLh56Lr_Jp9C70uscPO-1" value="Email surveillé par Azure Function" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="290" y="30" width="200" height="70" as="geometry" />
+          <mxGeometry x="290" y="190" width="200" height="70" as="geometry" />
         </mxCell>
         <mxCell id="4xLh56Lr_Jp9C70uscPO-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="4xLh56Lr_Jp9C70uscPO-3" target="4xLh56Lr_Jp9C70uscPO-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="4xLh56Lr_Jp9C70uscPO-3" value="&#xa;Azure Cognitive Services analyse le contenu des e-mails pour en déterminer la catégorie&#xa;&#xa;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="300" y="130" width="180" height="90" as="geometry" />
+          <mxGeometry x="300" y="290" width="180" height="90" as="geometry" />
         </mxCell>
         <mxCell id="4xLh56Lr_Jp9C70uscPO-4" value="&#xa;En fonction de la catégorie, un Logic App spécifique est déclenché pour générer une réponse appropriée&#xa;&#xa;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="300" y="250" width="180" height="80" as="geometry" />
+          <mxGeometry x="300" y="410" width="180" height="80" as="geometry" />
         </mxCell>
         <mxCell id="4xLh56Lr_Jp9C70uscPO-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="4xLh56Lr_Jp9C70uscPO-6" target="4xLh56Lr_Jp9C70uscPO-13">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="4xLh56Lr_Jp9C70uscPO-6" value="&#xa;&lt;li&gt;Les réponses sont stockées dans Azure Cosmos DB pour la traçabilité.&lt;/li&gt;&#xa;&#xa;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="295" y="360" width="190" height="60" as="geometry" />
+          <mxGeometry x="295" y="520" width="190" height="60" as="geometry" />
         </mxCell>
         <mxCell id="4xLh56Lr_Jp9C70uscPO-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=-0.041;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="4xLh56Lr_Jp9C70uscPO-4" target="4xLh56Lr_Jp9C70uscPO-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="4xLh56Lr_Jp9C70uscPO-13" value="&#xa;Azure Logic Apps envoie automatiquement la réponse par e-mail au client via Azure SendGrid.&#xa;&#xa;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="295" y="470" width="190" height="80" as="geometry" />
+          <mxGeometry x="295" y="630" width="190" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
