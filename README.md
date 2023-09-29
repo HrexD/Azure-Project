@@ -29,11 +29,101 @@ az storage account create --name emailgestionnaire --resource-group AzureFunctio
 
 ### Sous-étape 4.1 : Azure Functions
 
-- Créez des Azure Functions pour surveiller la boîte de réception d'e-mails et déclencher des actions en fonction des événements. Par exemple :
+Pour mettre en place une Azure Function en Python qui surveille les e-mails entrants en utilisant un déclencheur HTTP, suivez ces étapes :
+
+#### Étape 1  Configuration de l'environnement de développement
+
+Assurez-vous d'avoir Python 3.x installé sur votre système.
+
+Installez Azure Functions Core Tools en utilisant la commande suivante (cela vous permettra de développer et de tester localement) :
+
+```python
+pip install azure-functions-core-tools
+``` 
+#### Étape 2 : Création d'une Azure Function
+
+Ouvrez un terminal et créez un dossier pour votre projet Azure Functions.
+
+Dans ce dossier, créez un nouvel environnement virtuel Python en utilisant la commande suivante (assurez-vous d'être dans le dossier de votre projet) :
+```bash
+python -m venv venv
+```
+Activez l'environnement virtuel en fonction de votre système d'exploitation :
+```bash
+  venv\Scripts\activate
+```
+
+Installez le module Azure Functions en utilisant la commande suivante :
+```bash
+pip install azure-functions
+```
+
+Créez une nouvelle fonction en utilisant la commande Azure Functions Core Tools suivante. Cette commande crée un projet de fonction avec un déclencheur HTTP :
 
 ```bash
-az functionapp create --name MyEmailFunction --resource-group AzureFunctionsQuickstart-rg --consumption-plan-location westeurope --runtime python --os-type Linux
+    func init MyEmailFunction --python
 ```
+#### Étape 3 : Ajout du code de fonction
+
+Ouvrir le fichier **`app_function.py`** dans votre éditeur de code préféré et ajouter le code suivant :
+
+```python
+import azure.functions as func
+import logging
+
+app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+
+@app.route(route="Extract")
+def Extract(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    name = req.params.get('name')
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+        else:
+            name = req_body.get('name')
+
+    if name:
+        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+    else:
+        return func.HttpResponse(
+             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+             status_code=200
+        )
+```
+
+Étape 4 : Test local
+
+    Exécutez votre fonction localement en utilisant la commande suivante (assurez-vous d'être dans le dossier de votre projet) :
+
+    wasm
+
+    func start
+
+    Cela démarrera un serveur local qui écoute sur le port 7071.
+
+    Vous pouvez tester votre fonction en envoyant une requête POST HTTP à l'URL http://localhost:7071/api/MyEmailFunction en utilisant un outil tel que cURL ou Postman. Assurez-vous de fournir un corps JSON valide dans la requête pour simuler un e-mail.
+
+Étape 5 : Déploiement sur Azure
+
+    Créez une Function App Azure à l'aide du portail Azure.
+
+    Déployez votre fonction vers Azure en utilisant la commande Azure Functions Core Tools suivante. Assurez-vous de configurer vos informations d'identification Azure au préalable :
+
+    go
+
+    func azure functionapp publish MyEmailFunctionAppName
+
+    Remplacez MyEmailFunctionAppName par le nom de votre Function App Azure.
+
+    Une fois déployée, votre fonction est accessible via une URL publique, et vous pouvez configurer un déclencheur HTTP pour qu'elle réponde aux demandes d'e-mails entrants.
+
+
+
+
 
 ### Sous-étape 4.2 : Logic Apps
 
