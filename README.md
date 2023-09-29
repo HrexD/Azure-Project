@@ -68,29 +68,50 @@ Ouvrir le fichier **`function_app.py`** dans votre éditeur de code préféré e
 ```python
 import azure.functions as func
 import logging
-
-app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+import json
 
 @app.route(route="Extract")
 def Extract(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
-
-    if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    else:
+    # Vérifiez que la requête HTTP est un POST
+    if not req.method == 'POST':
         return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
+            "Cette fonction ne prend en charge que les requêtes POST.",
+            status_code=400
         )
+
+    try:
+        # Analysez le corps de la requête pour obtenir le contenu de l'e-mail
+        req_body = req.get_json()
+        sender = req_body.get('sender')
+        subject = req_body.get('subject')
+        body = req_body.get('body')
+
+        # Implémentez votre logique de génération de réponse ici en fonction du contenu de l'e-mail
+        response_message = generate_response(sender, subject, body)
+
+        # Vous pouvez maintenant prendre des mesures en fonction de la réponse, par exemple, envoyer une réponse par e-mail
+
+        return func.HttpResponse(
+            response_message,
+            mimetype="text/plain",
+            status_code=200
+        )
+    except Exception as e:
+        return func.HttpResponse(
+            f"Une erreur s'est produite : {str(e)}",
+            status_code=500
+        )
+
+def generate_response(sender, subject, body):
+    # Implémentez votre logique de génération de réponse ici en fonction du contenu de l'e-mail
+    # Vous pouvez utiliser des bibliothèques externes ou des services Azure pour analyser le contenu de l'e-mail
+
+    # Par exemple, générer une réponse simple
+    response = f"Merci pour votre e-mail. Nous vous répondrons bientôt. (Expéditeur : {sender}, Sujet : {subject})"
+    return response
+
 ```
 
 #### Étape 4 : Test local
