@@ -15,13 +15,15 @@
 az group create --name AzureFunctionsQuickstart-rg --location westeurope
 ```
 
-![](image.png)
+![](RessourcesGroup.png)
 
 - Créez un compte de stockage Azure pour stocker les données et les fichiers nécessaires. Par exemple :
 
 ```bash
-az storage account create --name emailgestionnaire --resource-group AzureFunctionsQuickstart-rg --location EastUS --sku Standard_LRS
+az storage account create --name emailgestionnaire --resource-group AzureFunctionsQuickstart-rg --location westeurope --sku Standard_LRS
 ```
+
+![](AccountStorage.png)
 
 ## Étape 4 : Implémentation de la Solution
 
@@ -30,7 +32,7 @@ az storage account create --name emailgestionnaire --resource-group AzureFunctio
 - Créez des Azure Functions pour surveiller la boîte de réception d'e-mails et déclencher des actions en fonction des événements. Par exemple :
 
 ```bash
-az functionapp create --name MyEmailFunction --resource-group AzureFunctionsQuickstart-rg --consumption-plan-location eastus --runtime python --os-type Linux
+az functionapp create --name MyEmailFunction --resource-group AzureFunctionsQuickstart-rg --consumption-plan-location westeurope --runtime python --os-type Linux
 ```
 
 ### Sous-étape 4.2 : Logic Apps
@@ -46,7 +48,7 @@ az logic workflow create --resource-group AzureFunctionsQuickstart-rg --name MyE
 - Intégrez Azure Cognitive Services pour l'analyse du texte des e-mails entrants et la génération de réponses appropriées. Par exemple :
 
 ```bash
-az cognitiveservices account create --name MyTextAnalyticsService --resource-group AzureFunctionsQuickstart-rg --kind TextAnalytics --sku S0 --location eastus
+az cognitiveservices account create --name MyTextAnalyticsService --resource-group AzureFunctionsQuickstart-rg --kind TextAnalytics --sku S0 --location westeurope
 ```
 
 ### Sous-étape 4.4 : Azure Cosmos DB
@@ -54,7 +56,7 @@ az cognitiveservices account create --name MyTextAnalyticsService --resource-gro
 - Utilisez Azure Cosmos DB pour stocker les données des e-mails et des réponses générées. Par exemple :
 
 ```bash
-az cosmosdb create --name MyCosmosDB --resource-group AzureFunctionsQuickstart-rg --kind GlobalDocumentDB --locations "East US=0" --default-consistency-level Eventual
+az cosmosdb create --name MyCosmosDB --resource-group AzureFunctionsQuickstart-rg --kind GlobalDocumentDB --locations "westeurope=0" --default-consistency-level Eventual
 ```
 
 ### Sous-étape 4.5 : Azure SendGrid (ou Azure Logic Apps pour les e-mails sortants)
