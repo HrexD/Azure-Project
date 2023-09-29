@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-09-29T10:21:42.390Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0" etag="QKpGflH67y3qlg8VmL5n" version="22.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-09-29T10:21:48.049Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0" etag="Zw1qAlLzMjAn_NyG7IOg" version="22.0.0" type="github">
   <diagram name="Page-1" id="FinugbX3ogyh6_Ym3ktt">
     <mxGraphModel dx="1434" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -36,7 +36,7 @@
         <mxCell id="WDQPBYJNWFbDJCdiv3jJ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="WDQPBYJNWFbDJCdiv3jJ-1" target="4xLh56Lr_Jp9C70uscPO-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="WDQPBYJNWFbDJCdiv3jJ-1" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="WDQPBYJNWFbDJCdiv3jJ-1" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="230" y="70" width="30" height="60" as="geometry" />
         </mxCell>
       </root>
